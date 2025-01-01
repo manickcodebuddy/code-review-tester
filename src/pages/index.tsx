@@ -1,4 +1,6 @@
 import React from "react";
+import TodoCard from "./components/TodoCard";
+import TodoButton from "./components/TodoButton";
 
 const HomePage = () => {
   return (
@@ -11,6 +13,15 @@ const HomePage = () => {
         <li>Item 3</li>
         <li>Item 4</li>
       </ul>
+      <div>
+        <TodoCard>Go to mall</TodoCard>
+        <TodoCard>Brush teeth</TodoCard>
+        <TodoCard>Sleep</TodoCard>
+        <TodoCard>Wake Up</TodoCard>
+      </div>
+      <div>
+        <TodoButton />
+      </div>
     </div>
   );
 };
