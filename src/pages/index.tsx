@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import TodoCard from "./components/TodoCard";
+import TodoButton from "./components/TodoButton";
 
 const HomePage = () => {
   const [search, setSearch] = useState("");
@@ -18,7 +20,15 @@ const HomePage = () => {
         <li>Item 3</li>
         <li>Item 4</li>
       </ul>
-      <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
+      <div>
+        <TodoCard>Go to mall</TodoCard>
+        <TodoCard>Brush teeth</TodoCard>
+        <TodoCard>Sleep</TodoCard>
+        <TodoCard>Wake Up</TodoCard>
+      </div>
+      <div>
+        <TodoButton />
+      </div>
     </div>
   );
 };
