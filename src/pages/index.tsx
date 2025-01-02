@@ -3,6 +3,7 @@ import ContactForm from "../components/ContactForm";
 import ContactCard from "../components/ContactCard";
 
 interface Contact {
+  id: string;
   name: string;
   email: string;
   message: string;
@@ -14,41 +15,31 @@ const HomePage = () => {
 
   useEffect(() => {
     if(search.length > 10) {
-      setSearch("Maximum limit reached");
+      setSearch("Maximum limit");
     }
   }, []);
 
   const handleFormSubmit = (data: Contact) => {
-    setContacts(prev => [...prev, data]);
+    setContacts(prev => [...prev,data]);
+  };
+
+  const handleDeleteContact = (id: string) => {
+    setContacts(prev => prev.filter(contact => contact.id !== id));
   };
   
   return (
-    <div className="container mx-auto px-4">
-      <h1 className="text-2xl font-bold mb-4">This is Code review tester app</h1>
-      <p>This is a subtitle</p>
-      <ul className="mb-4">
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-        <li>Item 4</li>
-      </ul>
-      <input 
-        type="text" 
-        value={search} 
-        onChange={(e) => setSearch(e.target.value)}
-        className="border p-2 rounded mb-4" 
-      />
-      
-      <ContactForm onSubmit={handleFormSubmit} />
+    <div className="container mx-auto px-4">      
+      <ContactForm onSubmit={(data) => handleFormSubmit({...data, id: Math.random().toString()})} />
 
       <div className="mt-8">
         <h2 className="text-xl font-bold mb-4">Submitted Contacts</h2>
-        {contacts.map((contact, index) => (
+        {contacts.map((contact) => (
           <ContactCard
-            key={index}
+            key={contact.id}
             name={contact.name}
             email={contact.email}
             message={contact.message}
+            onDelete={() => handleDeleteContact(contact.id)}
           />
         ))}
       </div>
