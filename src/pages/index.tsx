@@ -12,10 +12,11 @@ interface Contact {
 const HomePage = () => {
   const [search, setSearch] = useState("");
   const [contacts, setContacts] = useState<Contact[]>([]);
-
   useEffect(() => {
     if(search.length > 10) {
-      setSearch("Maximum limit");
+      setSearch("Maximum limit reached");
+    }else{
+      setSearch("");
     }
   }, []);
 
